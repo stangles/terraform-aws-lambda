@@ -50,15 +50,6 @@ variable "attach_vpc_config" {
   default     = "false"
 }
 
-variable "environment" {
-  description = "A map that defines environment variables for the Lambda function."
-  type        = "map"
-
-  default = {
-    NA = "NA"
-  }
-}
-
 variable "tags" {
   description = "A map of tags (key-value pairs) passed to resources."
   type        = "map"

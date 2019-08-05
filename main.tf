@@ -15,10 +15,6 @@ resource "aws_lambda_function" "main" {
   reserved_concurrent_executions = "${var.reserved_concurrent_executions}"
   publish                        = "${var.publish}"
 
-  environment {
-    variables = "${var.environment}"
-  }
-
   tags = "${merge(var.tags, map("Name", "${var.name_prefix}"))}"
 }
 
@@ -41,10 +37,6 @@ resource "aws_lambda_function" "vpc" {
     security_group_ids = ["${aws_security_group.vpc.*.id}"]
   }
 
-  environment {
-    variables = "${var.environment}"
-  }
-
   tags = "${merge(var.tags, map("Name", "${var.name_prefix}"))}"
 }
 
@@ -63,10 +55,6 @@ resource "aws_lambda_function" "main_s3" {
   reserved_concurrent_executions = "${var.reserved_concurrent_executions}"
   publish                        = "${var.publish}"
   source_code_hash               = "${var.source_code_hash}"
-
-  environment {
-    variables = "${var.environment}"
-  }
 
   tags = "${merge(var.tags, map("Name", "${var.name_prefix}"))}"
 }
@@ -96,10 +84,6 @@ resource "aws_lambda_function" "vpc_s3" {
   vpc_config {
     subnet_ids         = ["${var.subnet_ids}"]
     security_group_ids = ["${aws_security_group.vpc.*.id}"]
-  }
-
-  environment {
-    variables = "${var.environment}"
   }
 
   tags = "${merge(var.tags, map("Name", "${var.name_prefix}"))}"
